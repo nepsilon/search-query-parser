@@ -1,13 +1,13 @@
-# Search query parser
+# Search Query Syntax Parser
 
 A simple parser for advanced search query syntax.
 
-It parses a string like 
+It parses a string like this:
 ```
 from:hi@retrace.io,foo@gmail.com to:me subject:vacations date:1/10/2013-15/04/2014 photos
 ```
 
-To return an object like this
+And turn it into an object like this:
 
 ```javascript
 {
@@ -52,9 +52,10 @@ Both values take an array of strings, as in the example just above.
 
 ## Testing
 
-The 15 tests are written using the BDD testing framework should.js. Run `npm install --dev` to install it. Ensure you also have Mocha installed (`node install -g mocha`).
+The 15 tests are written using the BDD testing framework should.js, and run with mocha.
+Run `npm install should` and `npm instlal -g mocha` to install them both.
 
-Run tests with  `mocha -R spec`.
+Run tests with `mocha -R spec`.
 
 ## License
 
