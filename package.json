@@ -1,5 +1,5 @@
 {
-  "name": "search-query",
+  "name": "search-query-parser",
   "version": "0.0.1",
   "description": "Parser for advanced search query syntax",
   "main": "index.js",
@@ -13,13 +13,21 @@
   "keywords": [
     "search syntax parser",
     "query syntax parser",
+    "query",
     "parser",
+    "search query",
     "search"
   ],
-  "author": "Julien Buty",
+  "author": {
+    "name": "Julien Buty",
+    "email": "julien@nepsilon.net"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nepsilon/search-query-parser/issues"
   },
-  "homepage": "https://github.com/nepsilon/search-query-parser"
+  "homepage": "https://github.com/nepsilon/search-query-parser",
+  "devDependencies": {
+    "should": "^3.2.0"
+  }
 }
