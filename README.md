@@ -55,7 +55,8 @@ Both values take an array of strings, as in the example just above.
 ## Testing
 
 The 15 tests are written using the BDD testing framework should.js, and run with mocha.
-Run `npm install should` and `npm instlal -g mocha` to install them both.
+
+Run `npm install should` and `npm install -g mocha` to install them both.
 
 Run tests with `mocha -R spec`.
 
