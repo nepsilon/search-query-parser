@@ -1,6 +1,7 @@
 # Search Query Syntax Parser
 
 > A simple parser for advanced search query syntax.
+
 [![Build Status](https://travis-ci.org/retraceio/search-query-parser.svg?branch=master)](https://travis-ci.org/retraceio/search-query-parser)
 
 It parses a string like this:
