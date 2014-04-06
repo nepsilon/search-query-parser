@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nepsilon/search-query-parser"
+    "url": "git://github.com/retraceio/search-query-parser"
   },
   "keywords": [
     "search syntax parser",
@@ -20,13 +20,13 @@
   ],
   "author": {
     "name": "Julien Buty",
-    "email": "julien@nepsilon.net"
+    "email": "julien@retraceio.net"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nepsilon/search-query-parser/issues"
+    "url": "https://github.com/retraceio/search-query-parser/issues"
   },
-  "homepage": "https://github.com/nepsilon/search-query-parser",
+  "homepage": "https://github.com/retraceio/search-query-parser",
   "devDependencies": {
     "should": "^3.2.0"
   }
