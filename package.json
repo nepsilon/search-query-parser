@@ -4,7 +4,7 @@
   "description": "Parser for advanced search query syntax",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -R spec"
   },
   "repository": {
     "type": "git",
