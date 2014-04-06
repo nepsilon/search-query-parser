@@ -39,7 +39,7 @@ var options = {keywords: ['from', 'to', 'subject'], ranges: ['date']}
 var searchQueryObj = searchQuery.parse(query, options);
 
 // searchQueryObj.from is now ['hi@retrace.io', 'foo@gmail.com']
-// searchQueryObj.top is now 'me'
+// searchQueryObj.to is now 'me'
 // searchQueryObj.date is now {from: '1/10/2013', to: '15/04/2014'}
 // searchQueryObj.text is now 'photos'
 ```
