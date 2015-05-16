@@ -9,7 +9,7 @@ It parses a string like this:
 from:hi@retrace.io,foo@gmail.com to:me subject:vacations date:1/10/2013-15/04/2014 photos
 ```
 
-And turn it into an object like this:
+And turns it into an object like this:
 
 ```javascript
 {
