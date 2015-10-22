@@ -50,11 +50,12 @@ You can configure what keywords and ranges the parser should accept with the opt
 It accepts 2 values:
  * `keywords`, that can be separated by commas (,)
  * `ranges`, that can be separated by a hyphen (-)
+
 Both values take an array of strings, as in the example just above.
 
 ## Testing
 
-The 15 tests are written using the BDD testing framework should.js, and run with mocha.
+The 17 tests are written using the BDD testing framework should.js, and run with mocha.
 
 Run `npm install should` and `npm install -g mocha` to install them both.
 
@@ -64,7 +65,7 @@ Run tests with `mocha -R spec`.
 
 The MIT License (MIT)
 
-Copyright (c) 2014 retraceio <hi@retrace.io>
+Copyright (c) 2014 retraceio <julien@nepsilon.net>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
