@@ -201,4 +201,26 @@ describe('Search query syntax parser', function () {
   });
 
 
+  it('should not split on spaces inside single and double quotes', function () {
+    var searchQuery = 'name:"Bob Saget" description:\'Banana Sandwiche\'';
+    var options = {keywords: ['name', 'description']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('name', 'Bob Saget');
+    parsedSearchQuery.should.have.property('description', 'Banana Sandwiche');
+  });
+
+
+  it('should correctly handle escaped single and double quotes', function () {
+    var searchQuery = 'case1:"This \\"is\\" \'a\' test" case2:\'This "is" \\\'a\\\' test\'';
+    var options = {keywords: ['case1', 'case2']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('case1', 'This "is" \'a\' test');
+    parsedSearchQuery.should.have.property('case2', 'This "is" \'a\' test');
+  });
+
+
 });
