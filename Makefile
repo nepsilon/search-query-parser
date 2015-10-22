@@ -1,11 +1,9 @@
+BINS=./node_modules/.bin
 
-build: components index.js
-	@component build --dev
+install:
+	@npm install .
 
-components: component.json
-	@component install --dev
+test: 
+	@$(BINS)/mocha -R spec
 
-clean:
-	rm -fr build components template.js
-
-.PHONY: clean
+.PHONY: test
