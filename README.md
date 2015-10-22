@@ -59,7 +59,7 @@ The 17 tests are written using the BDD testing framework should.js, and run with
 
 Run `npm install should` and `npm install -g mocha` to install them both.
 
-Run tests with `mocha -R spec`.
+Run tests with `make test`.
 
 ## License
 

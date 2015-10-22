@@ -1,6 +1,6 @@
 {
   "name": "search-query-parser",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Parser for advanced search query syntax",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/retraceio/search-query-parser"
+    "url": "git://github.com/nepsilon/search-query-parser"
   },
   "keywords": [
     "search syntax parser",
@@ -20,13 +20,13 @@
   ],
   "author": {
     "name": "Julien Buty",
-    "email": "julien@retraceio.net"
+    "email": "julien@nepsilon.net"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/retraceio/search-query-parser/issues"
+    "url": "https://github.com/nepsilon/search-query-parser/issues"
   },
-  "homepage": "https://github.com/retraceio/search-query-parser",
+  "homepage": "https://github.com/nepsilon/search-query-parser",
   "devDependencies": {
     "should": "^3.2.0",
     "mocha": "*"
