@@ -53,6 +53,20 @@ It accepts 2 values:
 
 Both values take an array of strings, as in the example just above.
 
+If no keywords or ranges are specified, or if none are present in the given search query, then `searchQuery.parse` will return a string.
+
+```javascript
+var searchQuery = require('search-query-parser');
+
+var query = 'a query with just text';
+var parsedQuery = searchQuery.parse(query);
+// parsedQuery is now 'a query with just text'
+
+var options = {keywords: ['unused']};
+var parsedQueryWithOptions = searchQuery.parse(query, options);
+// parsedQueryWithOptions is now 'a query with just text'
+```
+
 ## Testing
 
 The 17 tests are written using the BDD testing framework should.js, and run with mocha.
