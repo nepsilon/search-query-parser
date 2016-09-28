@@ -48,8 +48,8 @@ var searchQueryObj = searchQuery.parse(query, options);
 
 You can configure what keywords and ranges the parser should accept with the options argument.
 It accepts 2 values:
- * `keywords`, that can be separated by commas (,)
- * `ranges`, that can be separated by a hyphen (-)
+* `keywords`, that can be separated by commas (,)
+* `ranges`, that can be separated by a hyphen (-)
 
 Both values take an array of strings, as in the example just above.
 
@@ -67,9 +67,20 @@ var parsedQueryWithOptions = searchQuery.parse(query, options);
 // parsedQueryWithOptions is now 'a query with just text'
 ```
 
+You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world` . And it will return :
+
+```javascript
+{
+  name: ['hello', 'world'],
+  exclusion: {
+    from: ['sep@foobar.io']
+  }
+}
+```
+
 ## Testing
 
-The 17 tests are written using the BDD testing framework should.js, and run with mocha.
+The 20 tests are written using the BDD testing framework should.js, and run with mocha.
 
 Run `npm install should` and `npm install -g mocha` to install them both.
 

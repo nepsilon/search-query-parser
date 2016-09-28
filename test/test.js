@@ -223,4 +223,39 @@ describe('Search query syntax parser', function () {
   });
 
 
+  it('should parse a single keyword query in exclusion syntax', function() {
+    var searchQuery = '-from:jul@foo.com';
+    var options = {keywords: ['from']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.exclude.should.be.an.Object;
+    parsedSearchQuery.exclude.should.have.property('from', 'jul@foo.com');
+    parsedSearchQuery.should.not.have.property('text');
+  });
+
+  it('should concatenate a keyword multiple values in exclusion syntax', function() {
+    var searchQuery = '-from:jul@foo.com,mar@foo.com';
+    var options = {keywords: ['from']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.exclude.should.be.an.Object;
+    parsedSearchQuery.exclude.from.should.containEql('jul@foo.com');
+    parsedSearchQuery.exclude.from.should.containEql('mar@foo.com');
+    parsedSearchQuery.should.not.have.property('text');
+  });
+
+  it('should support keywords which appear multiple times with exclusion syntax', function() {
+    var searchQuery = '-from:jul@foo.com,mar@foo.com -from:jan@foo.com';
+    var options = {keywords: ['from']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.exclude.should.be.an.Object;
+    parsedSearchQuery.exclude.from.should.containEql('jul@foo.com');
+    parsedSearchQuery.exclude.from.should.containEql('mar@foo.com');
+    parsedSearchQuery.exclude.from.should.containEql('jan@foo.com');
+    parsedSearchQuery.should.not.have.property('text');
+  });
 });
