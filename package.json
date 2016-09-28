@@ -1,6 +1,6 @@
 {
   "name": "search-query-parser",
-  "version": "0.0.4",
+  "version": "1.1.0",
   "description": "Parser for advanced search query syntax",
   "main": "index.js",
   "scripts": {
