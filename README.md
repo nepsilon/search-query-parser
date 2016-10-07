@@ -72,7 +72,7 @@ You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world` .
 ```javascript
 {
   name: ['hello', 'world'],
-  exclusion: {
+  exclude: {
     from: ['sep@foobar.io']
   }
 }
