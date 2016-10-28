@@ -57,7 +57,33 @@ describe('Search query syntax parser', function () {
   });
 
 
-  it('should parse a single keyword with free text before it', function () {
+  it('should ignore keywords that are not specified', function() {
+    var searchQuery = 'test another other:jul@foo.com';
+    var options = {
+      keywords: ['from']
+    };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.not.have.property('other');
+    parsedSearchQuery.should.have.property('text', 'test another other:jul@foo.com');
+    parsedSearchQuery.should.have.property('offsets', [{
+      text: 'test',
+      offsetStart: 0,
+      offsetEnd: 4
+    }, {
+      text: 'another',
+      offsetStart: 5,
+      offsetEnd: 12
+    }, {
+      text: 'other:jul@foo.com',
+      offsetStart: 13,
+      offsetEnd: 30
+    }]);
+  });
+
+
+  it('should parse a single keyword with free text before it', function() {
     var searchQuery = 'hey you! from:jul@foo.com';
     var options = {keywords: ['from']};
     var parsedSearchQuery = searchquery.parse(searchQuery, options);
