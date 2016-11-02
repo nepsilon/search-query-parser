@@ -20,7 +20,13 @@ And turns it into an object like this:
     from: '1/10/2013',
     to: '15/04/2014'
     },
-  text: 'photos'
+  text: 'photos',
+  offsets: 
+   [ { keyword: 'from', value: 'hi@retrace.io,foo@gmail.com', offsetStart: 0, offsetEnd: 32 },
+     { keyword: 'to', value: 'me', offsetStart: 33, offsetEnd: 38 },
+     { keyword: 'subject', value: 'vacations', offsetStart: 39, offsetEnd: 56 },
+     { keyword: 'date', value: '1/10/2013-15/04/2014', offsetStart: 57, offsetEnd: 82 },
+     { text: 'photos', offsetStart: 83, offsetEnd: 89 } ]
 }
 ```
 
