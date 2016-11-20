@@ -448,6 +448,29 @@ describe('Search query syntax parser', function () {
   });
 
 
+  it('should not split on commas inside single and double quotes', function () {
+    // https://github.com/nepsilon/search-query-parser/issues/16
+    var searchQuery = 'name:"Bob,Saget" description:\'Banana,Sandwiche\'';
+    var options = {keywords: ['name', 'description']};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('name', 'Bob,Saget');
+    parsedSearchQuery.should.have.property('description', 'Banana,Sandwiche');
+    parsedSearchQuery.should.have.property('offsets', [{
+      keyword: 'name',
+      value: 'Bob,Saget',
+      offsetStart: 0,
+      offsetEnd: 16
+    }, {
+      keyword: 'description',
+      value: 'Banana,Sandwiche',
+      offsetStart: 17,
+      offsetEnd: 47
+    }]);
+  });
+
+
   it('should correctly handle escaped single and double quotes', function () {
     var searchQuery = 'case1:"This \\"is\\" \'a\' test" case2:\'This "is" \\\'a\\\' test\'';
     var options = {keywords: ['case1', 'case2']};
