@@ -14,6 +14,62 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.equal(searchQuery);
   });
 
+  it('should return a tokenized string when option is set', function () {
+    var searchQuery = "fancy pyjama wear";
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy', 'pyjama', 'wear']);
+  });
+
+  it('should return a tokenized string when option is set, respecting double-quotes and escapes', function () {
+    var searchQuery = 'fancy "py\\"j\\"am\'a w\'ear"';
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy', 'py"j"am\'a w\'ear']);
+  });
+
+  it('should return a tokenized string when option is set, respecting single-quotes and escapes', function () {
+    var searchQuery = "fancy 'py\\'j\\'am\"a w\"ear'";
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy', "py'j'am\"a w\"ear"]);
+  });
+
+  it('should return a tokenized string with negation of unquoted terms', function () {
+    var searchQuery = "fancy -pyjama -wear";
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy']);
+    parsedSearchQuery.should.have.property('exclude', {text: ['pyjama', 'wear']});
+  });
+
+  it('should return a tokenized string with negation of single-quoted terms', function () {
+    var searchQuery = "fancy -'pyjama -wear'";
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy']);
+    parsedSearchQuery.should.have.property('exclude', {text: 'pyjama -wear'});
+  });
+
+  it('should return a tokenized string with negation of double-quoted terms', function () {
+    var searchQuery = 'fancy -"pyjama -wear"';
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy']);
+    parsedSearchQuery.should.have.property('exclude', {text: 'pyjama -wear'});
+  });
 
   it('should parse a single keyword with no text', function () {
     var searchQuery = 'from:jul@foo.com';
