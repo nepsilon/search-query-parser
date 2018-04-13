@@ -53,27 +53,30 @@ var searchQueryObj = searchQuery.parse(query, options);
 ```
 
 You can configure what keywords and ranges the parser should accept with the options argument.
-It accepts 2 values:
-* `keywords`, that can be separated by commas (,)
-* `ranges`, that can be separated by a hyphen (-)
+It accepts 3 values:
+* `keywords`, that can be separated by commas (,). Accepts an array of strings.
+* `ranges`, that can be separated by a hyphen (-). Accepts an array of strings.
+* `tokenize`, that controls the behaviour of text search terms. If set to `true`, non-keyword text terms are returned as an array of strings where each term in the array is a whitespace-separated word, or a multi-word term surrounded by single- or double-quotes.
 
-Both values take an array of strings, as in the example just above.
-
-If no keywords or ranges are specified, or if none are present in the given search query, then `searchQuery.parse` will return a string.
+If no keywords or ranges are specified, or if none are present in the given search query, then `searchQuery.parse` will return a string if `tokenize` is false, or an array of strings under the key `text` if `tokenize` is true.
 
 ```javascript
 var searchQuery = require('search-query-parser');
 
-var query = 'a query with just text';
+var query = 'a query with "just text"';
 var parsedQuery = searchQuery.parse(query);
-// parsedQuery is now 'a query with just text'
+// parsedQuery is now 'a query with "just text"'
 
 var options = {keywords: ['unused']};
 var parsedQueryWithOptions = searchQuery.parse(query, options);
-// parsedQueryWithOptions is now 'a query with just text'
+// parsedQueryWithOptions is now 'a query with "just text"'
+
+var options2 = {tokenize: true};
+var parsedQueryWithTokens = searchQuery.parse(query, options2);
+// parsedQueryWithTokens is now: ['a', 'query', 'with', 'just text']
 ```
 
-You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world` . And it will return :
+You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world`. This also works with non-keyword text terms when `tokenize` is set to `true`. 
 
 ```javascript
 {
@@ -86,7 +89,7 @@ You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world` .
 
 ## Testing
 
-The 20 tests are written using the BDD testing framework should.js, and run with mocha.
+The 27 tests are written using the BDD testing framework should.js, and run with mocha.
 
 Run `npm install should` and `npm install -g mocha` to install them both.
 
