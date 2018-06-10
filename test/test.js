@@ -347,6 +347,38 @@ describe('Search query syntax parser', function () {
     }]);
   });
 
+  it('should always return an array if alwaysArray is set to true', function () {
+    var searchQuery = 'from:jul@foo.com to:a@b.c ouch!#';
+
+    var options = {keywords: ['from', 'to'], alwaysArray: true};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', 'ouch!#');
+    parsedSearchQuery.should.have.property('from');
+    parsedSearchQuery.should.have.property('to');
+    parsedSearchQuery.from.should.be.an.Array;
+    parsedSearchQuery.to.should.be.an.Array;
+    parsedSearchQuery.from.length.should.equal(1);
+    parsedSearchQuery.to.length.should.equal(1);
+    parsedSearchQuery.from.should.containEql('jul@foo.com');
+    parsedSearchQuery.to.should.containEql('a@b.c');
+    parsedSearchQuery.should.have.property('offsets', [{
+      keyword: 'from',
+      value: 'jul@foo.com',
+      offsetStart: 0,
+      offsetEnd: 16
+    }, {
+      keyword: 'to',
+      value: 'a@b.c',
+      offsetStart: 17,
+      offsetEnd: 25
+    }, {
+      text: 'ouch!#',
+      offsetStart: 26,
+      offsetEnd: 32
+    }]);
+  });
 
   it('should parse range with only 1 end and free text', function () {
     var searchQuery = 'date:12/12/2012 ahaha';
@@ -585,5 +617,25 @@ describe('Search query syntax parser', function () {
       offsetStart: 31,
       offsetEnd: 47
     }]);
+  });
+
+  it('should not return offset when offsets option is set to false', function() {
+    var searchQuery = '-from:jul@foo.com,mar@foo.com to:bar@hey.ya about date:12/12/2012';
+    var options = {
+      keywords: ['from', 'to'],
+      ranges: ['date'],
+      offsets: false
+    };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.exclude.should.be.an.Object;
+    parsedSearchQuery.exclude.from.should.containEql('jul@foo.com');
+    parsedSearchQuery.exclude.from.should.containEql('mar@foo.com');
+    parsedSearchQuery.to.should.containEql('bar@hey.ya');
+    parsedSearchQuery.should.have.property('text', 'about');
+    parsedSearchQuery.should.have.property('date');
+    parsedSearchQuery.date.from.should.containEql('12/12/2012');
+    parsedSearchQuery.should.not.have.property('offsets');
   });
 });
