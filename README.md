@@ -126,7 +126,7 @@ Run tests with `make test`.
 
 The MIT License (MIT)
 
-Copyright (c) 2014 retraceio <julien@nepsilon.net>
+Copyright (c) 2014 retraceio
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
