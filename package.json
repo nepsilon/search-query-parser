@@ -18,10 +18,6 @@
     "search query",
     "search"
   ],
-  "author": {
-    "name": "Julien Buty",
-    "email": "julien@nepsilon.net"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/nepsilon/search-query-parser/issues"
