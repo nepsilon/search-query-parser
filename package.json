@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/nepsilon/search-query-parser",
   "devDependencies": {
+    "mocha": "*",
     "should": "^3.2.0",
-    "mocha": "*"
+    "typescript": "^3.3.3333"
   }
 }
