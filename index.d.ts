@@ -18,7 +18,7 @@ export interface SearchParserOffset {
 }
 
 export interface SearchParserResult extends ISearchParserDictionary {
-  text?: string;
+  text?: string | string[];
   offsets?: SearchParserOffset[];
   exclude?: ISearchParserDictionary;
 }
