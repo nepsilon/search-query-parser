@@ -116,7 +116,10 @@ The offsets object could become pretty huge with long search queries which could
 
 ## Typescript
 
-Typescript types are available for this library.
+Typescript types are available for this library in the `docs` directory.
+[Browse type documentation here.](docs/README.md)
+
+Documentation is generated using `node_modules/.bin/typedoc index.d.ts`
 
 ## Testing
 
