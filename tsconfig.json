@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "composite": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": [
+    "./lib/**/*"
+  ],
+  "exclude": [],
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "docs",
+    "include": "./lib",
+    "exclude": ["./node_modules/**/*"],
+    "module": "commonjs",
+    "target": "es5",
+    "includeDeclarations": true,
+    "theme": "markdown",
+    "readme": "none"
+  }
+}

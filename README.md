@@ -114,6 +114,13 @@ var parsedQueryWithOptions = searchQuery.parse(query, options);
 
 The offsets object could become pretty huge with long search queries which could be an unnecessary use of space if no functionality depends on it. It can simply be turned off using the option `offsets: false`
 
+## Typescript
+
+Typescript types are available for this library in the `docs` directory.
+[Browse type documentation here.](docs/README.md)
+
+Documentation is generated using `node_modules/.bin/typedoc index.d.ts`
+
 ## Testing
 
 The 29 tests are written using the BDD testing framework should.js, and run with mocha.
