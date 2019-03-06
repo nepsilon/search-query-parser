@@ -5,7 +5,7 @@
 // Definitions: https://github.com/nepsilon/search-query-parser
 
 export module SearchQueryParser {
-  interface SearchParserOptions {
+  export interface SearchParserOptions {
     offsets?: boolean;
     tokenize?: boolean;
     keywords?: string[];
@@ -13,22 +13,22 @@ export module SearchQueryParser {
     alwaysArray?: boolean;
   }
 
-  interface ISearchParserDictionary {
+  export interface ISearchParserDictionary {
     [key: string]: any;
   }
 
-  interface SearchParserOffset {
+  export interface SearchParserOffset {
     keyword: string;
     value?: string;
     offsetStart: number;
     offsetEnd: number;
   }
 
-  interface SearchParserResult extends ISearchParserDictionary {
+  export interface SearchParserResult extends ISearchParserDictionary {
     text?: string | string[];
     offsets?: SearchParserOffset[];
     exclude?: ISearchParserDictionary;
   }
 
-  function parse(string: string, options?: SearchParserOptions): string | SearchParserResult;
+  export function parse(string: string, options?: SearchParserOptions): string | SearchParserResult;
 }
