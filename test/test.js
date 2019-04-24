@@ -348,9 +348,9 @@ describe('Search query syntax parser', function () {
   });
 
   it('should always return an array if alwaysArray is set to true', function () {
-    var searchQuery = 'from:jul@foo.com to:a@b.c ouch!#';
+    var searchQuery = 'from:jul@foo.com to:a@b.c -cc:you@foo.com ouch!#';
 
-    var options = {keywords: ['from', 'to'], alwaysArray: true};
+    var options = {keywords: ['from', 'to', 'cc'], alwaysArray: true};
     var parsedSearchQuery = searchquery.parse(searchQuery, options);
 
     parsedSearchQuery.should.be.an.Object;
@@ -359,10 +359,13 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.have.property('to');
     parsedSearchQuery.from.should.be.an.Array;
     parsedSearchQuery.to.should.be.an.Array;
+    parsedSearchQuery.exclude.cc.should.be.an.Array;
     parsedSearchQuery.from.length.should.equal(1);
     parsedSearchQuery.to.length.should.equal(1);
+    parsedSearchQuery.exclude.cc.length.should.equal(1);
     parsedSearchQuery.from.should.containEql('jul@foo.com');
     parsedSearchQuery.to.should.containEql('a@b.c');
+    parsedSearchQuery.exclude.cc.should.containEql('you@foo.com');
     parsedSearchQuery.should.have.property('offsets', [{
       keyword: 'from',
       value: 'jul@foo.com',
@@ -374,9 +377,14 @@ describe('Search query syntax parser', function () {
       offsetStart: 17,
       offsetEnd: 25
     }, {
+      keyword: 'cc',
+      value: 'you@foo.com',
+      offsetStart: 27,
+      offsetEnd: 41
+    }, {
       text: 'ouch!#',
-      offsetStart: 26,
-      offsetEnd: 32
+      offsetStart: 42,
+      offsetEnd: 48
     }]);
   });
 
