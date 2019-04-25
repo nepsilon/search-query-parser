@@ -1,6 +1,6 @@
 {
   "name": "search-query-parser",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Parser for advanced search query syntax",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/nepsilon/search-query-parser",
   "devDependencies": {
-    "mocha": "*",
+    "mocha": "^6.1.4",
     "should": "^3.2.0",
     "typedoc": "^0.14.2",
     "typedoc-plugin-markdown": "^1.1.27",
