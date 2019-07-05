@@ -34,5 +34,7 @@ export function parse(string: string, options?: SearchParserOptions & {
 }): string;
 export function parse(string: string, options?: SearchParserOptions & {
   tokenize: true
-}): SearchParserResult;
+}): SearchParserResult & {
+  text: string[]
+};
 export function parse(string: string, options?: SearchParserOptions): string | SearchParserResult;
