@@ -35,6 +35,6 @@ export function parse(string: string, options?: SearchParserOptions & {
 export function parse(string: string, options?: SearchParserOptions & {
   tokenize: true
 }): SearchParserResult & {
-  text: string[]
+  text?: string[]
 };
 export function parse(string: string, options?: SearchParserOptions): string | SearchParserResult;
