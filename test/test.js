@@ -12,7 +12,10 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.a.string;
     parsedSearchQuery.should.equal(searchQuery);
-
+    var a= searchquery.parse('from:hi@retrace.io,foo@gmail.com to:me subject:vacations date:1/10/2013-15/04/2014 photos', {keywords: ['from', 'to', 'subject'], ranges: ['date']})
+    console.log(a)
+    a.to = 'you'
+console.log(searchquery.stringify(a, {keywords: ['from', 'to', 'subject'], ranges: ['date']}))
     var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery));
     parsedAfterStringifySearchQuery.should.be.equal(parsedSearchQuery);
   });
