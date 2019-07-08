@@ -127,7 +127,7 @@ var searchQueryObj = searchQuery.parse(query, options);
 searchQueryObj.to = 'you';
 var newQuery = searchQuery.stringify(query, options);
 
-// newQuery is now: photos from:hi@retrace.io,foo@gmail.com __to:you__ subject:vacations date:1/10/2013-15/04/2014
+// newQuery is now: photos from:hi@retrace.io,foo@gmail.com to:you subject:vacations date:1/10/2013-15/04/2014
 ```
 
 ## Typescript
