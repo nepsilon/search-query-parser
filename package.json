@@ -2,9 +2,16 @@
   "name": "search-query-parser",
   "version": "1.5.4",
   "description": "Parser for advanced search query syntax",
-  "main": "index.js",
+  "main": "dist/search-query-parser.js",
+  "module": "dist/search-query-parser.js",
+  "typings": "dist/search-query-parser.d.ts",
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha -R spec",
+    "clean": "rimraf dist",
+    "build": "npm run build:prod",
+    "build:dev": "npm run clean && webpack --mode development --progress --profile --colors --bail --display-error-details",
+    "build:watch": "npm run clean && webpack --mode development --progress --profile --colors --bail --display-error-details --watch",
+    "build:prod": "npm run clean && webpack --mode production --progress --profile --colors --bail"
   },
   "repository": {
     "type": "git",
@@ -24,10 +31,16 @@
   },
   "homepage": "https://github.com/nepsilon/search-query-parser",
   "devDependencies": {
+    "awesome-typescript-loader": "5.2.1",
     "mocha": "^6.1.4",
+    "rimraf": "3.0.0",
     "should": "^3.2.0",
-    "typedoc": "^0.14.2",
+    "tslint": "5.20.1",
+    "typedoc": "^0.15.4",
     "typedoc-plugin-markdown": "^1.1.27",
-    "typescript": "^3.3.3333"
-  }
+    "typescript": "3.7.2",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10"
+  },
+  "dependencies": {}
 }
