@@ -16,11 +16,19 @@ export interface ISearchParserDictionary {
   [key: string]: any;
 }
 
-export interface SearchParserOffset {
-  keyword: string;
-  value?: string;
+export type SearchParserOffset = (SearchParserKeyWordOffset | SearchParserTextOffset) & {
   offsetStart: number;
   offsetEnd: number;
+}
+
+export type SearchParserKeyWordOffset = {
+  keyword: string;
+  value?: string;
+
+}
+
+export type SearchParserTextOffset = {
+  text: string;
 }
 
 export interface SearchParserResult extends ISearchParserDictionary {
