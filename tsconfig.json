@@ -1,16 +1,21 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "composite": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationMap": true
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
-  "include": [
-    "./lib/**/*"
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test"
   ],
-  "exclude": [],
   "typedocOptions": {
     "mode": "modules",
     "out": "docs",

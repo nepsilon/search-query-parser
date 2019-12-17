@@ -39,7 +39,7 @@ $ npm install search-query-parser
 ## Usage
 
 ```javascript
-var searchQuery = require('search-query-parser');
+import * as SearchQueryParser from 'search-query-parser';
 
 var query = 'from:hi@retrace.io,foo@gmail.com to:me subject:vacations date:1/10/2013-15/04/2014 photos';
 var options = {keywords: ['from', 'to', 'subject'], ranges: ['date']}
@@ -63,18 +63,18 @@ It accepts 5 values:
 If no keywords or ranges are specified, or if none are present in the given search query, then `searchQuery.parse` will return a string if `tokenize` is false, or an array of strings under the key `text` if `tokenize` is true.
 
 ```javascript
-var searchQuery = require('search-query-parser');
+import * as SearchQueryParser from 'search-query-parser';
 
 var query = 'a query with "just text"';
-var parsedQuery = searchQuery.parse(query);
+var parsedQuery = SearchQueryParser.parse(query);
 // parsedQuery is now 'a query with "just text"'
 
 var options = {keywords: ['unused']};
-var parsedQueryWithOptions = searchQuery.parse(query, options);
+var parsedQueryWithOptions = SearchQueryParser.parse(query, options);
 // parsedQueryWithOptions is now 'a query with "just text"'
 
 var options2 = {tokenize: true};
-var parsedQueryWithTokens = searchQuery.parse(query, options2);
+var parsedQueryWithTokens = SearchQueryParser.parse(query, options2);
 // parsedQueryWithTokens is now: ['a', 'query', 'with', 'just text']
 ```
 
@@ -92,11 +92,11 @@ You can also use exclusion syntax, like `-from:sep@foobar.io name:hello,world`. 
 Sometimes checking against whether a keyword holds string or not can be excessive and prone to errors; it's often easier to simply expect everything is an array even if it means doing 1-iteration loops often.
 
 ```javascript
-var searchQuery = require('search-query-parser');
+import * as SearchQueryParser from 'search-query-parser';
 
 var query = 'test:helloworld fun:yay,happy';
 var options = {keywords: ['test', 'fun']};
-var parsedQueryWithOptions = searchQuery.parse(query, options);
+var parsedQueryWithOptions = SearchQueryParser.parse(query, options);
 // parsedQueryWithOptions is now:
 // {
 //   test: 'helloworld',
@@ -104,7 +104,7 @@ var parsedQueryWithOptions = searchQuery.parse(query, options);
 // }
 
 var optionsAlwaysArray = {keywords: ['test', 'fun'], alwaysArray: true};
-var parsedQueryWithOptions = searchQuery.parse(query, options);
+var parsedQueryWithOptions = SearchQueryParser.parse(query, options);
 // parsedQueryWithOptions is now:
 // {
 //   test: ['helloworld'], //No need to check whether test is a string or not!
