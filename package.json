@@ -26,7 +26,7 @@
   "devDependencies": {
     "mocha": "^6.1.4",
     "should": "^3.2.0",
-    "typedoc": "^0.14.2",
+    "typedoc": "^0.16.11",
     "typedoc-plugin-markdown": "^1.1.27",
     "typescript": "^3.3.3333"
   }
