@@ -112,7 +112,23 @@ var parsedQueryWithOptions = searchQuery.parse(query, options);
 // }
 ```
 
-The offsets object could become pretty huge with long search queries which could be an unnecessary use of space if no functionality depends on it. It can simply be turned off using the option `offsets: false`
+The offsets object could become pretty huge with long search queries which could be an unnecessary use of space if no functionality depends on it. It can simply be turned off using the option `offsets: false`.
+
+Anytime, you can go back and stringify the parsed search query. This could be handy if you would like to manipulate the parsed search query object.
+
+```javascript
+var searchQuery = require('search-query-parser');
+
+var query = 'from:hi@retrace.io,foo@gmail.com to:me subject:vacations date:1/10/2013-15/04/2014 photos';
+var options = {keywords: ['from', 'to', 'subject'], ranges: ['date']}
+
+var searchQueryObj = searchQuery.parse(query, options);
+
+searchQueryObj.to = 'you';
+var newQuery = searchQuery.stringify(query, options);
+
+// newQuery is now: photos from:hi@retrace.io,foo@gmail.com to:you subject:vacations date:1/10/2013-15/04/2014
+```
 
 ## Typescript
 

@@ -12,6 +12,8 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.a.string;
     parsedSearchQuery.should.equal(searchQuery);
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery));
+    parsedAfterStringifySearchQuery.should.be.equal(parsedSearchQuery);
   });
 
   it('should return a tokenized string when option is set', function () {
@@ -21,6 +23,11 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy', 'pyjama', 'wear']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should return a tokenized string when option is set, respecting double-quotes and escapes', function () {
@@ -30,6 +37,11 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy', 'py"j"am\'a w\'ear']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should return a tokenized string when option is set, respecting single-quotes and escapes', function () {
@@ -39,6 +51,11 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy', "py'j'am\"a w\"ear"]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should return a tokenized string with negation of unquoted terms', function () {
@@ -49,6 +66,11 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy']);
     parsedSearchQuery.should.have.property('exclude', {text: ['pyjama', 'wear']});
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should return a tokenized string with negation of single-quoted terms', function () {
@@ -59,6 +81,11 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy']);
     parsedSearchQuery.should.have.property('exclude', {text: 'pyjama -wear'});
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should return a tokenized string with negation of double-quoted terms', function () {
@@ -69,6 +96,11 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', ['fancy']);
     parsedSearchQuery.should.have.property('exclude', {text: 'pyjama -wear'});
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should parse a single keyword with no text', function () {
@@ -85,6 +117,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 0,
       offsetEnd: 16
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -110,6 +147,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 21,
       offsetEnd: 27
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -136,6 +178,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 13,
       offsetEnd: 30
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -161,6 +208,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 9,
       offsetEnd: 25
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -190,6 +242,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 26,
       offsetEnd: 31
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -220,6 +277,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 35,
       offsetEnd: 40
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -263,6 +325,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 49,
       offsetEnd: 54
     }]);
+    
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -293,6 +360,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 33,
       offsetEnd: 47
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -313,6 +385,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 0,
       offsetEnd: 27
     }]);
+    
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -345,6 +422,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 45,
       offsetEnd: 51
     }]);
+    
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should always return an array if alwaysArray is set to true', function () {
@@ -386,6 +468,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 42,
       offsetEnd: 48
     }]);
+    
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should parse range with only 1 end and free text', function () {
@@ -408,6 +495,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 16,
       offsetEnd: 21
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should parse range with 2 ends and free text', function () {
@@ -431,6 +523,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 27,
       offsetEnd: 32
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -440,6 +537,11 @@ describe('Search query syntax parser', function () {
 
     parsedSearchQuery.should.be.a.string;
     parsedSearchQuery.should.be.equal('✓ about 这个事儿');
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery));
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -451,6 +553,11 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.be.an.Object;
     parsedSearchQuery.should.have.property('text', '✓ about 这个事儿');
     parsedSearchQuery.should.have.property('from', 'dr@who.co.uk');
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -519,6 +626,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 124,
       offsetEnd: 128
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -541,6 +653,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 17,
       offsetEnd: 47
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -563,6 +680,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 29,
       offsetEnd: 57
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
 
@@ -581,6 +703,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 1,
       offsetEnd: 17
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should concatenate a keyword multiple values in exclusion syntax', function() {
@@ -599,6 +726,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 1,
       offsetEnd: 29
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should support keywords which appear multiple times with exclusion syntax', function() {
@@ -625,6 +757,11 @@ describe('Search query syntax parser', function () {
       offsetStart: 31,
       offsetEnd: 47
     }]);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
   it('should not return offset when offsets option is set to false', function() {
@@ -645,5 +782,10 @@ describe('Search query syntax parser', function () {
     parsedSearchQuery.should.have.property('date');
     parsedSearchQuery.date.from.should.containEql('12/12/2012');
     parsedSearchQuery.should.not.have.property('offsets');
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 });
