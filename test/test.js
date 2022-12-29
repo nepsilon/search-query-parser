@@ -58,6 +58,62 @@ describe('Search query syntax parser', function () {
     parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
+  it('should return a tokenized string for excluded terms', function () {
+    var searchQuery = "fancy pyjama wear";
+    var options = {tokenize: true, offsets: false, alwaysArray: true};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy', 'pyjama', 'wear']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
+  it('should return a array for only one term when alwaysArray is true', function () {
+    var searchQuery = "fancy";
+    var options = {tokenize: true, offsets: false, alwaysArray: true};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
+  it('should return a array for only one excluded term when alwaysArray is true', function () {
+    var searchQuery = "-fancy";
+    var options = {tokenize: true, offsets: false, alwaysArray: true};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('exclude', ['fancy']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
+  it('should return a string for only one excluded term when alwaysArray is false', function () {
+    var searchQuery = "fancy";
+    var options = {tokenize: true, offsets: false, alwaysArray: false};
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', 'fancy');
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
   it('should return a tokenized string with negation of unquoted terms', function () {
     var searchQuery = "fancy -pyjama -wear";
     var options = { tokenize: true };
