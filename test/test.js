@@ -73,6 +73,21 @@ describe('Search query syntax parser', function () {
     parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
+  it('should return a tokenized string with custom negation prefix', function () {
+    var searchQuery = "fancy !pyjama !wear";
+    var options = { tokenize: true, negatePrefix: '!' };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy']);
+    parsedSearchQuery.should.have.property('exclude', {text: ['pyjama', 'wear']});
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
   it('should return a tokenized string with negation of single-quoted terms', function () {
     var searchQuery = "fancy -'pyjama -wear'";
     var options = { tokenize: true };
@@ -787,5 +802,17 @@ describe('Search query syntax parser', function () {
     parsedAfterStringifySearchQuery.offsets = undefined;
     parsedSearchQuery.offsets = undefined;
     parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
+  it('should stringify properly with default negate prefix', function () {
+    var searchQueryObject = {
+      text: [ 'fancy' ],
+      exclude: { text: [ 'pyjama', 'wear' ] }
+    };
+    var options = { tokenize: true };
+    stringifiedSearchQuery = searchquery.stringify(searchQueryObject, options);
+
+    stringifiedSearchQuery.should.be.a.string;
+    stringifiedSearchQuery.should.be.eql('fancy -pyjama -wear');
   });
 });

@@ -10,6 +10,7 @@ export interface SearchParserOptions {
   keywords?: string[];
   ranges?: string[];
   alwaysArray?: boolean;
+  negatePrefix?: string;
 }
 
 export interface ISearchParserDictionary {

@@ -53,12 +53,13 @@ var searchQueryObj = searchQuery.parse(query, options);
 ```
 
 You can configure what keywords and ranges the parser should accept with the options argument.
-It accepts 5 values:
+It accepts 6 values:
 * `keywords`, that can be separated by commas (,). Accepts an array of strings.
 * `ranges`, that can be separated by a hyphen (-). Accepts an array of strings.
 * `tokenize`, that controls the behaviour of text search terms. If set to `true`, non-keyword text terms are returned as an array of strings where each term in the array is a whitespace-separated word, or a multi-word term surrounded by single- or double-quotes.
 * `alwaysArray`, a boolean that controls the behaviour of the returned query. If set to `true`, all matched keywords would always be arrays instead of strings. If set to `false` they will be strings if matched a single value. Defaults to `false`.
 * `offsets`, a boolean that controls the behaviour of the returned query. If set to `true`, the query will contain the offsets object. If set to `false`, the query will not contain the offsets object. Defaults to `true`.
+* `negatePrefix`, a string that controls the behaviour of the returned query. It defines what prefix is used to mark a term as excluded. Defaults to `'-'`.
 
 If no keywords or ranges are specified, or if none are present in the given search query, then `searchQuery.parse` will return a string if `tokenize` is false, or an array of strings under the key `text` if `tokenize` is true.
 
