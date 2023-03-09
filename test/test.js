@@ -118,6 +118,35 @@ describe('Search query syntax parser', function () {
     parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
   });
 
+  it('should return a tokenized string without empty text terms', function () {
+    var searchQuery = "fancy pyjama wear ''";
+    var options = { tokenize: true };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', ['fancy', 'pyjama', 'wear']);
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
+  it('should return a simple string without empty text terms', function () {
+    var searchQuery = "key:value fancy pyjama wear ''";
+    var options = { keywords: ['key'] };
+    var parsedSearchQuery = searchquery.parse(searchQuery, options);
+
+    parsedSearchQuery.should.be.an.Object;
+    parsedSearchQuery.should.have.property('text', 'fancy pyjama wear');
+    parsedSearchQuery.should.have.property('key', 'value');
+
+    var parsedAfterStringifySearchQuery = searchquery.parse(searchquery.stringify(parsedSearchQuery, options), options);
+    parsedAfterStringifySearchQuery.offsets = undefined;
+    parsedSearchQuery.offsets = undefined;
+    parsedAfterStringifySearchQuery.should.be.eql(parsedSearchQuery);
+  });
+
   it('should parse a single keyword with no text', function () {
     var searchQuery = 'from:jul@foo.com';
     var options = {keywords: ['from']};
